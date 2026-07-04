@@ -1,79 +1,156 @@
 <div align="center">
 
 # 🌤️ Klimate Dashboard
+**Real‑time weather insights, beautifully visualized.**
 
-Real‑time weather insights, beautifully visualized.
+<img src="https://raw.githubusercontent.com/dharunkumar-sh/klimate-dashboard/main/public/logo.png" alt="Klimate Logo" width="120" />
 
-<br>
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![TanStack Query](https://img.shields.io/badge/TanStack_Query-FF4154?style=for-the-badge&logo=react&logoColor=white)](https://tanstack.com/query)
 
-[![GitHub Repo Size](https://img.shields.io/github/repo-size/dharunkumar-sh/klimate-dashboard)](https://github.com/dharunkumar-sh/klimate-dashboard)
-[![npm version](https://img.shields.io/npm/v/weather-app?color=brightgreen)](https://www.npmjs.com/package/weather-app)
-[![License](https://img.shields.io/github/license/dharunkumar-sh/klimate-dashboard?color=blue)](https://github.com/dharunkumar-sh/klimate-dashboard/blob/main/LICENSE)
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/dharunkumar-sh/klimate-dashboard/ci.yml?label=CI)](https://github.com/dharunkumar-sh/klimate-dashboard/actions)
+<p align="center">
+  A high-performance, modern weather dashboard providing hyper-local weather data, interactive forecasts, and personalized city tracking with a seamless user experience.
+</p>
+
+---
 
 </div>
 
----
+## 📖 Overview
 
-## 📖 Description
+**Klimate** is a professional-grade weather application built with a focus on performance, accessibility, and aesthetic precision. By leveraging **TanStack Query** for efficient data fetching and **Shadcn UI** for a polished interface, Klimate transforms raw meteorological data into actionable insights.
 
-Klimate is a **lightweight, responsive weather dashboard** built with React, TypeScript, and Vite. It fetches real‑time weather data from the OpenWeather API, displays current conditions, provides an hourly forecast, and allows users to manage favorite cities. The UI leverages **shadcn/ui**, **Tailwind CSS**, and **Recharts** for polished, accessible components and data visualization.
+The application features a dynamic dashboard that adapts to the user's location, tracks favorite cities, and provides detailed hourly and daily forecasts through a responsive, theme-aware interface.
 
----
+## 🚀 Key Features
 
-## 📑 Table of Contents
-
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Getting Started](#-getting-started)
-- [Usage](#-usage)
-- [Folder Structure](#-folder-structure)
-- [Architecture](#-architecture)
-- [Deployment](#-deployment)
-- [Contributing](#-contributing)
-- [License](#-license)
-
----
-
-## 🚀 Features
-
-| 🎯 Feature | 🔧 What it does |
-| :--- | :--- |
-| **Real‑time Weather** | Pulls temperature, humidity, and wind data from the OpenWeather API. |
-| **Hourly Forecast** | Presents a 24‑hour chart using Recharts for visual insights. |
-| **Favorites** | Persists favorite cities using local storage. |
-| **Dark Mode** | Seamless theme toggling via `next-themes`. |
-| **Responsive Design** | Optimized for mobile, tablet, and desktop viewports. |
-| **Data Caching** | Leverages TanStack Query for efficient API caching. |
-| **Geolocation** | Auto‑detects user location on initial load. |
-| **Accessibility** | Built on Radix UI primitives for WCAG compliance. |
-
----
+| Feature | Description | Tech Used |
+| :--- | :--- | :--- |
+| 🌍 **Geo-Location** | Automatic detection of user's current location for instant weather updates. | `use-geolocation` |
+| 🔍 **Smart Search** | Fast city search with history tracking and autocomplete capabilities. | `cmdk` / `use-search-history` |
+| 📈 **Visual Analytics** | Hourly temperature trends and detailed weather metrics. | `Recharts` / `Lucide React` |
+| ❤️ **Favorites System** | Save and quickly access weather data for frequently visited cities. | `Local Storage` / `use-favorite` |
+| 🌓 **Dynamic Theming** | Full support for Light and Dark modes for optimal viewing in any environment. | `next-themes` |
+| ⚡ **Optimistic UI** | Skeleton loaders and cached data for a perceived zero-latency experience. | `TanStack Query` / `Shadcn UI` |
 
 ## 🛠️ Tech Stack
 
-| Category | Libraries / Tools |
-| :--- | :--- |
-| **Language** | TypeScript |
-| **Framework** | React (Vite) |
-| **Styling** | Tailwind CSS, shadcn/ui, Radix UI |
-| **Charts** | Recharts |
-| **Data Fetching** | TanStack Query |
-| **Routing** | React Router |
-| **Icons** | Lucide Icons |
-| **Utilities** | date-fns, clsx, class-variance-authority |
+### Core Architecture
+- **Frontend Framework:** React 18 + TypeScript
+- **Build Tool:** Vite (Lightning fast HMR)
+- **State Management:** TanStack Query (Server-state caching & synchronization)
+- **Styling:** Tailwind CSS + Radix UI (via Shadcn UI)
+
+### Infrastructure & Utilities
+- **Routing:** React Router DOM
+- **Date Handling:** `date-fns`
+- **Icons:** Lucide React
+- **Animations:** Tailwind Animate CSS
+
+## 📂 Project Structure
+
+```mermaid
+graph TD
+    src --> api[api/ - API Config & Types]
+    src --> components[components/ - UI Components]
+    src --> components --> ui[ui/ - Atomic Shadcn Components]
+    src --> context[context/ - Theme Providers]
+    src --> hooks[hooks/ - Custom Business Logic]
+    src --> pages[pages/ - View Layouts]
+    src --> lib[lib/ - Utility Functions]
+```
+
+<details>
+<summary><b>Detailed File Tree</b></summary>
+
+```text
+src/
+├── api/
+│   ├── config.ts          # API Base configuration
+│   ├── types.ts           # TypeScript interfaces for Weather data
+│   └── weather.ts         # Fetching logic for weather endpoints
+├── components/
+│   ├── city-search.tsx    # Search bar with command palette
+│   ├── current-weather.tsx# Main weather display card
+│   ├── favorite-cities.tsx# List of saved locations
+│   ├── weather-forecast.tsx# Daily forecast grid
+│   └── ui/                # Shadcn UI primitives (Button, Card, Dialog, etc.)
+├── hooks/
+│   ├── use-weather.ts     # Core weather data fetching hook
+│   ├── use-geolocation.ts # Browser geolocation wrapper
+│   └── use-favorite.ts    # LocalStorage logic for favorites
+├── pages/
+│   ├── weather-dashboard.tsx # Main landing experience
+│   └── city-page.tsx         # Detailed view for specific cities
+└── lib/
+    └── utils.ts           # Tailwind merge and utility helpers
+```
+</details>
+
+## ⚙️ Getting Started
+
+### Prerequisites
+- **Node.js** (v18 or higher)
+- **npm** or **yarn**
+- An API Key from a weather provider (e.g., OpenWeatherMap)
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/dharunkumar-sh/klimate-dashboard.git
+   cd klimate-dashboard
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Environment Setup**
+   Create a `.env` file in the root directory:
+   ```env
+   VITE_WEATHER_API_KEY=your_api_key_here
+   ```
+
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+## 💻 Usage
+
+### Core Logic Example
+The application uses a custom hook pattern to decouple API logic from the UI:
+
+```typescript
+// Example of how weather data is consumed
+const { data, isLoading, error } = useWeather(cityId);
+
+if (isLoading) return <LoadingSkeleton />;
+if (error) return <Alert variant="destructive">Error fetching weather</Alert>;
+
+return <CurrentWeather data={data} />;
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is currently unlicensed. Please contact the author for usage permissions.
 
 ---
-
-## 🏁 Getting Started
-
-```bash
-# Clone the repository
-git clone [https://github.com/dharunkumar-sh/klimate-dashboard.git](https://github.com/dharunkumar-sh/klimate-dashboard.git)
-cd klimate-dashboard
-
-# Install dependencies
-npm install
-
-# Start the development server
-npm run dev
+<div align="center">
+  Built with ❤️ by <a href="https://github.com/dharunkumar-sh">Dharun Kumar</a>
+</div>
